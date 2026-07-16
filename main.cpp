@@ -2,6 +2,9 @@
 #include <iostream>
 
 int main() {
-    std::cout << "Project successfully setup!" << std::endl;
-    return 0;
+	int x = 1;
+	int y = 1;
+	std::cout << x+y << std::endl;
+	std::cout << "Hello World!" << std::endl;
+	return 0;
 }
