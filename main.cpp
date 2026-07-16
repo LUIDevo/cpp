@@ -8,6 +8,7 @@ int add (int a, int b) {
 
 int main() {
 	int x = 1, y=2;
+	int arr[2] = {1,2};
 	if (x < y) {
 		cout << "Y IS BIGGER" << endl;
 	}
