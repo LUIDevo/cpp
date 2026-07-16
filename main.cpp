@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include <vector>
 using namespace std;
 
 int add (int a, int b) {
@@ -15,6 +16,10 @@ int main() {
 	cout << add(x,y) << endl;
 	cin >> x;
 	cout << "Hello World!" << endl;
+	std::vector<int> dynamicArray(5);
+	for (int i=0; i<5; i++) {
+		cout << dynamicArray[i];
+	}
 	cout << add(x,y) << endl;
 	for (int i=0; i<5; i++) {
 		cout << "HI";
