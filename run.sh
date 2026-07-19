@@ -1,2 +1,2 @@
 #!/usr/bin/bash
-g++ main.cpp -o main && ./main
+g++ -pthread main.cpp -o main && ./main

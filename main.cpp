@@ -1,33 +1,22 @@
-#include <iostream>
-#include <vector>
-#include <chrono>
-using namespace std;
+#include <stdio.h>
+#include <assert.h>
+#include <pthread.h>
 
-struct BenchResult {
-	string name;
-	vector<double> times_ms;
-};
-
-void print_stats(const BenchResult & r) {
-	for (double result : r.times_ms) {
-		cout << result << endl;
-	}
+void *mythread(void *arg) {
+	printf("%s\n", (char *) arg);
+	return NULL;
 }
 
-int main() {
-	vector<double> times = {};
-	BenchResult results ("sum", times);
-	for (int i=0; i<10; i++) {
-		auto t0 = std::chrono::steady_clock::now();
-		long long sum = 0;
-		for (long j=0; j<1000000; j++) {
-			sum += j+2;
-		}
-		auto t1 = std::chrono::steady_clock::now();
-		auto ms = std::chrono::duration_cast<std::chrono::microseconds>(t1 - t0).count();
-		cout << "sum: " << sum << "\n";
-		results.times_ms.push_back(ms);
-	}
-	print_stats(results);
+int 
+main(int argc, char *argv[]) {
+	pthread_t p1, p2;
+	int rc;
+	printf("main: begin\n");
+	rc = pthread_create(&p1, NULL, mythread, "A"); assert(rc == 0);
+	rc = pthread_create(&p2, NULL, mythread, "B"); assert(rc == 0);
+	// join waits for the threads to finish
+	rc = pthread_join(p1, NULL); assert(rc == 0);
+	rc = pthread_join(p2, NULL); assert(rc == 0);
+	printf("main: end\n");
 	return 0;
 }
